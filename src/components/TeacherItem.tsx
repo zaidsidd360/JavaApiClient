@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Teacher } from '../interfaces/Teacher'
 
 interface ITeacherItemPropType {
@@ -15,32 +15,21 @@ const TeacherItem = ({ teacher }: ITeacherItemPropType) => {
     email: teacher.email
   })
 
-  useEffect(() => {
-    if (teacher) {
-      setCurrTeacher(teacher)
-    }
-  }, [])
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrTeacher({ ...currTeacher, name: e.target.value });
-  }
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrTeacher({ ...currTeacher, phone: Number(e.target.value) });
-  }
-
-  const handleMailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrTeacher({ ...currTeacher, email: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrTeacher({
+      ...currTeacher,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
     <>
       <tr>
         <td>{teacher.id}</td>
-        <td>{wantsToEdit ? <input value={currTeacher.name} onChange={handleNameChange} type='text' /> : <p>{teacher.name}</p>}</td>
-        <td>{wantsToEdit ? <input value={currTeacher.phone} onChange={handlePhoneChange} type='number' /> : <p>{teacher.phone}</p>}</td>
-        <td>{wantsToEdit ? <input value={currTeacher.email} onChange={handleMailChange} type='email' /> : <p>{teacher.email}</p>}</td>
-        <td><button>delete</button>  <button onClick={() => { setWantsToEdit(!wantsToEdit) }}>edit</button></td>
+        <td>{wantsToEdit ? <input value={currTeacher.name} onChange={handleChange} type='text' name='name' /> : <p>{teacher.name}</p>}</td>
+        <td>{wantsToEdit ? <input value={currTeacher.phone} onChange={handleChange} type='number' name='phone' /> : <p>{teacher.phone}</p>}</td>
+        <td>{wantsToEdit ? <input value={currTeacher.email} onChange={handleChange} type='email' name='email' /> : <p>{teacher.email}</p>}</td>
+        <td><button>Delete</button>  <button onClick={() => { setWantsToEdit(!wantsToEdit) }}>edit</button></td>
       </tr>
     </>
   )
