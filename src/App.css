@@ -1,0 +1,44 @@
+.appContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teachersListContainer>table {
+  border: 2px solid black;
+  width: 70vw;
+  height: 50vh;
+  border-collapse: collapse;
+  border-radius: 5px;
+  border-style: hidden;
+  /* hide standard table (collapsed) border */
+  box-shadow: 0 0 0 2px #292929;
+}
+
+thead {
+  border-bottom: 1px solid black;
+  /* padding: 0.2rem 0.5rem; */
+  height: 3rem;
+}
+
+tbody>tr>td {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align: center;
+  height: 4rem;
+}
+
+td>button {
+  width: 5rem;
+}
+
+tbody>tr {
+  margin: 1rem;
+}
+
+tbody>tr:hover {
+  background-color: #D6EEEE;
+}
