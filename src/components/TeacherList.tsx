@@ -6,7 +6,6 @@ interface ITeacherListPropType {
 }
 
 const TeacherList = ({ teachers }: ITeacherListPropType) => {
-  console.log(teachers)
   return (
     <div className='teachersListContainer'>
       <table>
