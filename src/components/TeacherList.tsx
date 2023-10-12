@@ -1,5 +1,5 @@
-import { Teacher } from '../interfaces/Teacher'
-import TeacherItem from './TeacherItem';
+import { Teacher } from "../interfaces/Teacher";
+import TeacherItem from "./TeacherItem";
 
 interface ITeacherListPropType {
   teachers: Teacher[];
@@ -7,26 +7,30 @@ interface ITeacherListPropType {
 
 const TeacherList = ({ teachers }: ITeacherListPropType) => {
   return (
-    <div className='teachersListContainer'>
+    <div className="teachersListContainer">
       <table>
         <thead>
           <tr>
-            <th>id</th>
+            <th>S. No.</th>
             <th>Teacher Name</th>
             <th>Phone Number</th>
             <th>Email</th>
           </tr>
         </thead>
         <tbody>
-          {teachers.map((teacher) => {
+          {teachers.map((teacher, index) => {
             return (
-              <TeacherItem key={teacher.email} teacher={teacher} />
-            )
+              <TeacherItem
+                key={teacher.email}
+                teacher={teacher}
+                index={index}
+              />
+            );
           })}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default TeacherList
+export default TeacherList;

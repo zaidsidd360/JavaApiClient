@@ -4,9 +4,10 @@ import useHTTP from "../hooks/useHTTP";
 
 interface ITeacherItemPropType {
   teacher: Teacher;
+  index: number;
 }
 
-const TeacherItem = ({ teacher }: ITeacherItemPropType) => {
+const TeacherItem = ({ teacher, index }: ITeacherItemPropType) => {
   const [wantsToEdit, setWantsToEdit] = useState(false);
 
   const [currTeacher, setCurrTeacher] = useState<Teacher>({
@@ -27,23 +28,15 @@ const TeacherItem = ({ teacher }: ITeacherItemPropType) => {
     useHTTP("DELETE", "http://localhost:8080/api/teachers", {
       body: JSON.stringify({ name: teacher.name, id: teacher.id }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
+        "Content-type": "application/json; charset=UTF-8",
+      },
     });
-    // fetch("http://localhost:8080/api/teachers", {
-    //   method: "DELETE",
-    //   body: JSON.stringify({ name: teacher.name, id: teacher.id }),
-    //   headers: {
-    //     "Content-Type": "application/json; charset=UTF-8",
-    //     "Content-Length": `${JSON.stringify({ name: teacher.name, id: teacher.id }).length}`
-    //   }
-    // }).then(res => res.json()).then(res => console.log(res))
   };
 
   return (
     <>
       <tr>
-        <td>{teacher.id}</td>
+        <td>{index + 1}</td>
         <td>
           {wantsToEdit ? (
             <input
